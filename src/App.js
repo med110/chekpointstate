@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import CounterCont from "./components/CounterCont";
+export default class App extends Component {
+  state = {
+    
+    count: 0,
+    memory :null ,
+  };
+  handleGreet = () => {
+    this.setState({
+      greet: !this.state.greet,
+    });
+  };
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  handleshow = () => {
+    this.setState({ isVisible: !this.state.isVisible });
+  };
+  
+  render() {
+    return (
+      <div className="App">
+        <h1>{this.state.greet ? "hello f1 group" : "bye f1 group"}</h1>
+        <button onClick={() => this.handleGreet()}>Greet</button>
+        <hr />
+        {this.state.isVisible ? <CounterCont /> : null}
+        <hr />
+        <button onClick={() => this.handleshow()}>
+          {this.state.isVisible ? "hide" : "show"}
+        </button>
+      </div>
+    );
+  }
 }
-
-export default App;
